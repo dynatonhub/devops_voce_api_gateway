@@ -18,9 +18,6 @@ on:
 
 jobs:
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-
     - name: Conectando ao server AWS
       uses: kevin-leptons/ssh_action@v1
       with:
