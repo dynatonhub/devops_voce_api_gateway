@@ -1,40 +1,38 @@
+---
 name: Deploy Projeto "voce_api_gateway"
-
-branding:
-  icon: 'terminal'
-  color: 'gray-dark'
-
 on:
   push:
     branches:
       - main
     paths:
       - devops/**
-  
-  pull_request: # [main, next]
+  pull_request:
     paths:
       - devops/**
 
-
 jobs:
+  remote_command_job:
+    runs-on: ubuntu-latest
+    name: SSH Remote command
     steps:
-    - name: Conectando ao server AWS
-      uses: kevin-leptons/ssh_action@v1
-      with:
-        user: ${{ secrets.REMOTE_USER }}
-        host: ${{ secrets.REMOTE_HOST }}
-        key: ${{ secrets.REMOTE_KEY }}
-      
-    - name: Acessando pasta do projeto
-      run: cd devops_voce_api_gateway
-    - name: Parando container "app_api_gateway"
-      run: docker stop app_api_gateway
-    - name: Removendo container "app_api_gateway"
-      run: docker rm app_api_gateway
-    - name: Removendo imagem do projeto "app_api_gateway"
-      run: docker rmi voce_api_gateway_api
-    - name: Baixando projeto Github "devops_voce_api_gateway"
-      run:  git pull
-    - name: Rodando docker-compose projeto "devops_voce_api_gateway"
-      run: docker-compose up -d
-    
+      - name: SSH Deployer
+        uses: msatbsx/ssh-and-run-your-script-on-remote-host@v0.1.1 # replace with current tag, avoid using main or latest
+#    steps:
+#      - name: Conectando ao server AWS
+#        uses: kevin-leptons/ssh_action@v1
+        with:
+          user: ${{ secrets.REMOTE_USER }}
+          host: ${{ secrets.REMOTE_HOST }}
+          key: ${{ secrets.REMOTE_KEY }}
+      - name: Acessando pasta do projeto
+        run: cd devops_voce_api_gateway
+      - name: Parando container "app_api_gateway"
+        run: docker stop app_api_gateway
+      - name: Removendo container "app_api_gateway"
+        run: docker rm app_api_gateway
+      - name: Removendo imagem do projeto "app_api_gateway"
+        run: docker rmi voce_api_gateway_api
+      - name: Baixando projeto Github "devops_voce_api_gateway"
+        run: git pull
+      - name: Rodando docker-compose projeto "devops_voce_api_gateway"
+        run: docker-compose up -d
