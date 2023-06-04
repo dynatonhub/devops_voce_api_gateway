@@ -25,9 +25,9 @@ jobs:
           user: ${{ secrets.REMOTE_USER }}
           host: ${{ secrets.REMOTE_HOST }}
           key: ${{ secrets.REMOTE_KEY }}
-          command:
+          command: |
             sudo su 
             chmod +x /var/www/html/deploy/devops_voce_api_gateway.sh && ./var/www/html/deploy/devops_voce_api_gateway.sh
 
   #    - name: Executando script
-  #      run: chmod +x /var/www/html/deploy/devops_voce_api_gateway.sh && ./var/www/html/deploy/devops_voce_api_gateway.sh
+  #      run: chmod +x /var/www/html/deploy/devops_voce_api_gateway.sh && /var/www/html/deploy/devops_voce_api_gateway.sh
