@@ -30,4 +30,4 @@ jobs:
             chmod +x /var/www/html/deploy/devops_voce_api_gateway.sh && ./var/www/html/deploy/devops_voce_api_gateway.sh
 
   #    - name: Executando script
-  #      run: chmod +x /var/www/html/deploy/devops_voce_api_gateway.sh && ./var/www/html/deploy/devops_voce_api_gateway.sh
+  #      run: chmod +x /var/www/html/deploy/devops_voce_api_gateway.sh && /var/www/html/deploy/devops_voce_api_gateway.sh
