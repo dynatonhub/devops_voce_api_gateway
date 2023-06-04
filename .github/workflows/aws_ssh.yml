@@ -24,8 +24,10 @@ jobs:
           user: ${{ secrets.REMOTE_USER }}
           host: ${{ secrets.REMOTE_HOST }}
           key: ${{ secrets.REMOTE_KEY }}
+      - name: Root
+        run:  sudo su 
       - name: Acessando pasta do projeto
-        run: cd devops_voce_api_gateway
+        run: cd /var/www/html/devops_voce_api_gateway
       - name: Parando container "app_api_gateway"
         run: docker stop app_api_gateway
       - name: Removendo container "app_api_gateway"
