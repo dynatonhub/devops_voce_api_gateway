@@ -26,4 +26,4 @@ jobs:
           key: ${{ secrets.REMOTE_KEY }}
 
       - name: Executando script
-        run: chmod +x ./var/www/html/deploy/devops_voce_api_gateway.sh
+        run: chmod +x /var/www/html/deploy/devops_voce_api_gateway.sh && ./var/www/html/deploy/devops_voce_api_gateway.sh
