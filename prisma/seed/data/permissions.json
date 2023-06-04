@@ -1,0 +1,182 @@
+[
+  {
+    "name": "Read session",
+    "entity": "session",
+    "action": "read",
+    "description": "Read sessions information"
+  },
+  {
+    "name": "Create user",
+    "entity": "user",
+    "action": "create",
+    "description": "Create a new user"
+  },
+  {
+    "name": "Read users",
+    "entity": "user",
+    "action": "read",
+    "description": "Read users information"
+  },
+  {
+    "name": "View user",
+    "entity": "user",
+    "action": "view",
+    "description": "View user information"
+  },
+  {
+    "name": "Update user",
+    "entity": "user",
+    "action": "update",
+    "description": "Update user information"
+  },
+  {
+    "name": "Delete user",
+    "entity": "user",
+    "action": "delete",
+    "description": "Delete user"
+  },
+  {
+    "name": "Create role",
+    "entity": "role",
+    "action": "write",
+    "description": "Create a new role"
+  },
+  {
+    "name": "Read role",
+    "entity": "role",
+    "action": "read",
+    "description": "Read roles information"
+  },
+  {
+    "name": "View role",
+    "entity": "role",
+    "action": "view",
+    "description": "View role information"
+  },
+  {
+    "name": "Update role",
+    "entity": "role",
+    "action": "update",
+    "description": "Update role information"
+  },
+  {
+    "name": "Delete role",
+    "entity": "role",
+    "action": "delete",
+    "description": "Delete role"
+  },
+  {
+    "name": "Read permissions",
+    "entity": "permission",
+    "action": "read",
+    "description": "Read permissions information"
+  },
+  {
+    "name": "Create group",
+    "entity": "group",
+    "action": "write",
+    "description": "Create a new group"
+  },
+  {
+    "name": "Read group",
+    "entity": "group",
+    "action": "read",
+    "description": "Read groups information"
+  },
+  {
+    "name": "View group",
+    "entity": "group",
+    "action": "view",
+    "description": "View group information"
+  },
+  {
+    "name": "Update group",
+    "entity": "group",
+    "action": "update",
+    "description": "Update group information"
+  },
+  {
+    "name": "Delete group",
+    "entity": "group",
+    "action": "delete",
+    "description": "Delete group"
+  },
+  {
+    "name": "Create Product",
+    "entity": "product",
+    "action": "write",
+    "description": "Create a new product"
+  },
+  {
+    "name": "Read Products",
+    "entity": "product",
+    "action": "read",
+    "description": "Read products information"
+  },
+  {
+    "name": "Update Product",
+    "entity": "product",
+    "action": "update",
+    "description": "Update product information"
+  },
+  {
+    "name": "Delete Product",
+    "entity": "product",
+    "action": "delete",
+    "description": "Delete a product"
+  },
+  {
+    "name": "Create Category",
+    "entity": "category",
+    "action": "write",
+    "description": "Create a new category"
+  },
+  {
+    "name": "Read Categories",
+    "entity": "category",
+    "action": "read",
+    "description": "Read categories information"
+  },
+  {
+    "name": "Update Category",
+    "entity": "category",
+    "action": "update",
+    "description": "Update category information"
+  },
+  {
+    "name": "Delete Category",
+    "entity": "category",
+    "action": "delete",
+    "description": "Delete a category"
+  },
+  {
+    "name": "Create coupon",
+    "entity": "coupon",
+    "action": "write",
+    "description": "Create a new coupon"
+  },
+  {
+    "name": "Read coupons",
+    "entity": "coupon",
+    "action": "read",
+    "description": "Read coupons information"
+  },
+  {
+    "name": "View coupon",
+    "entity": "coupon",
+    "action": "view",
+    "description": "View coupon information"
+  },
+  {
+    "name": "Update coupon",
+    "entity": "coupon",
+    "action": "update",
+    "description": "Update coupon information"
+  },
+  {
+    "name": "Delete coupon",
+    "entity": "coupon",
+    "action": "delete",
+    "description": "Delete coupon"
+  }
+]

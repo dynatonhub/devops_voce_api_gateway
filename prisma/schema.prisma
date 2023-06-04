@@ -1,0 +1,126 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [unaccent(map: "unaccent")]
+}
+
+model Role {
+  id          String             @id @default(uuid())
+  slug        String             @unique
+  name        String
+  created_at  DateTime           @default(now())
+  updated_at  DateTime           @updatedAt
+  permissions RoleOnPermission[]
+
+  @@map("roles")
+}
+
+model Permission {
+  id          String              @id @default(uuid())
+  slug        String              @unique
+  name        String              
+  action      String
+  entity      String
+  description String?
+  created_at  DateTime            @default(now())
+  roles       RoleOnPermission[]
+  groups      GroupOnPermission[]
+
+  @@unique([entity, action])
+  @@map("permissions")
+}
+
+enum Action {
+  create
+  read
+  view
+  write
+  update
+  delete
+  download
+  upload
+  approve
+  reject
+  publish
+  unpublish
+}
+
+model Group {
+  id          String              @id @default(uuid())
+  name        String              @unique
+  description String?
+  created_at  DateTime            @default(now())
+  updated_at  DateTime            @updatedAt
+  deleted_at  DateTime?
+  permissions GroupOnPermission[]
+
+  @@map("groups")
+}
+
+model RoleOnPermission {
+  role_id       String
+  role          Role       @relation(fields: [role_id], references: [id])
+  permission_id String
+  permission    Permission @relation(fields: [permission_id], references: [id])
+  created_at    DateTime   @default(now())
+
+  @@unique([role_id, permission_id])
+  @@map("roles_on_permissions")
+}
+
+model GroupOnPermission {
+  group_id      String
+  group         Group      @relation(fields: [group_id], references: [id])
+  permission_id String
+  permission    Permission @relation(fields: [permission_id], references: [id])
+  created_at    DateTime   @default(now())
+
+  @@unique([group_id, permission_id])
+  @@map("groups_on_permissions")
+}
+
+model UserOnGroup {
+  user_id    String
+  group_id   String
+  created_at DateTime @default(now())
+
+  @@unique([user_id, group_id])
+  @@map("users_on_groups")
+}
+
+model UserOnPermission {
+  user_id       String
+  permission_id String
+  created_at    DateTime @default(now())
+
+  @@unique([user_id, permission_id])
+  @@map("users_on_permissions")
+}
+
+model Session {
+  id         String    @id @default(uuid())
+  user_id    String
+  user_agent String
+  ip         String?
+  created_at DateTime  @default(now())
+  deleted_at DateTime?
+
+  @@map("sessions")
+}
+
+model ResetPassword {
+  id         String   @id @default(uuid())
+  user_id    String
+  token      String   @unique
+  created_at DateTime @default(now())
+
+  @@map("reset_passwords")
+}

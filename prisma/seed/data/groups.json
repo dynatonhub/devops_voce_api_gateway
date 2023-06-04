@@ -1,0 +1,17 @@
+[
+    {
+        "id": "11bd850a-2d73-4d60-841c-cf6b5207c928",
+        "name": "Financeiro",
+        "description": "Gerenciado dos recursos financeiros da empresa"
+    },
+    {
+        "id": "11bd850a-2d73-4d60-841c-cf6b5207c929",
+        "name": "Comercial",
+        "description": "Gerenciado da parte comerciais da empresa"
+    },
+    {
+        "id": "a0b0b0a0-2d73-4d60-841c-cf6b5207c928",
+        "name": "Desenvolvimento",
+        "description": "Gerencia o desenvolvimento de software da empresa"
+    }
+]

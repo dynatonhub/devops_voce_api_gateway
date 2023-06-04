@@ -1,0 +1,27 @@
+[
+    {
+        "id": "5ca9bccc-bcdb-41f3-9599-e65a0a082e83",
+        "slug": "superadmin",
+        "name": "Super Administrator"
+    },
+    {
+        "id": "422f6159-c943-4131-ba28-7637cb7ed0a7",
+        "slug": "admin",
+        "name": "Administrator"
+    },
+    {
+        "id": "439d2dda-0b03-4b8d-b69b-c51c5ee368df",
+        "slug": "advertiser",
+        "name": "Advertiser"
+    },
+    {
+        "id": "3ba35e6a-557d-4ba6-850f-8b95a68bb583",
+        "slug": "affiliate",
+        "name": "Afiliate"
+    },
+    {
+        "id": "ecfeabfb-dcfd-4f63-a009-c82853717930",
+        "slug": "client",
+        "name": "Client"
+    }
+]

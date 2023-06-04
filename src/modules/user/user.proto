@@ -1,0 +1,212 @@
+syntax = "proto3";
+
+package service;
+
+message User {
+  string id = 1;
+  string name = 2;
+  string username = 3;
+  string email = 4;
+  string role_id = 5;
+  oneof person {
+    JuridicalPerson juridical = 6;
+    FisicalPerson fisical = 7;
+  }
+  ContactList contacts = 8;
+  AddressList addresses = 9;
+  string advertiser_exclusive_of = 10;
+  string avatar = 11;
+  string status = 12;
+  string created_at = 13;
+  string updated_at = 14;
+}
+
+message FisicalPerson {
+  string cpf = 1;
+}
+
+message JuridicalPerson {
+  string cnpj = 1;
+}
+
+message Advertiser {
+  string id = 1;
+  string name = 2;
+}
+
+message Address {
+  string id = 1;
+  int32 main = 2;
+  string user_id = 3;
+  string zip = 4;
+  string street = 5;
+  string number = 6;
+  string city = 7;
+  string state = 8;
+  string complement = 9;
+}
+
+message Contact {
+  string id = 1;
+  int32 main = 2;
+  string user_id = 3;
+  int64 type = 4; // 1 - Email; 2 - Phone;
+  string contact = 5;
+}
+
+message UserCreationRequest {
+   string name = 1;
+   string username = 2;
+   string email = 3;
+   string role_id = 4;
+   oneof person {
+    JuridicalPerson juridical = 5;
+    FisicalPerson fisical = 6;
+   }
+   string advertiser_exclusive_of=7;
+   string password = 8;
+   string avatar = 9;
+}
+message UserEditRequest {
+  string name = 1;
+  string username = 2;
+  string email = 3;
+  string role_id = 4;
+  oneof person {
+    JuridicalPerson juridical = 5;
+    FisicalPerson fisical = 6;
+  }
+  string advertiser_exclusive_of=7;
+  string password = 8;
+  string avatar = 9;
+  string user_id = 10;
+  string status_id = 11;
+}
+
+message DeleteRequest {
+  string id = 1;
+}
+
+message DefaultResponse {
+  int64 status = 1; // 1 - Success; 2 - Failed
+  string message = 2;
+}
+
+message UserList {
+  repeated User all = 1;
+}
+
+message FilterRequest {
+  int64 max_results = 1;
+  string search_for = 3;
+  string min_time = 4;
+  string max_time = 5;
+  string sort = 6;
+}
+
+message UserIdFilterRequest {
+  string user_id = 1;
+}
+message UserEmailFilterRequest {
+  string email = 1;
+  string advertiser_exclusive_of = 2;
+}
+
+message AddressFilterRequest {
+  string address_id = 1;
+}
+
+message AddressList {
+  repeated Address all = 1;
+}
+
+message AddressEditRequest {
+  string zip = 1;
+  int32 main = 2;
+  string street = 3;
+  string number = 4;
+  string city = 5;
+  string state = 6;
+  string complement = 7;
+  string address_id = 8;
+}
+message AddressCreationRequest {
+  string zip = 1;
+  int32 main = 2;
+  string street = 3;
+  string number = 4;
+  string city = 5;
+  string state = 6;
+  string complement = 7;
+  string user_id = 8;
+}
+
+message ContactList {
+  repeated Contact all = 1;
+}
+message ContactFilterRequest {
+  string contact_id = 1;
+}
+
+message ContactEditRequest {
+  int64 type = 1; // 1 - Email; 2 - Phone;
+  int32 main = 2;
+  string contact = 3;
+  string contact_id = 4;
+}
+message ContactCreationRequest {
+  int64 type = 1; // 1 - Email; 2 - Phone;
+  int32 main = 2;
+  string contact = 3;
+  string user_id = 4;
+}
+
+message FindUserResponse {
+  User user = 1;
+  DefaultResponse error = 2;
+}
+message FindAddressResponse {
+  Address address = 1;
+  DefaultResponse error = 2;
+}
+message FindContactResponse {
+  Contact contact = 1;
+  DefaultResponse error = 2;
+}
+message UserListResponse {
+  UserList users = 1;
+  DefaultResponse error = 2;
+}
+message AddressListResponse {
+  AddressList addresses = 1;
+  DefaultResponse error = 2;
+}
+message ContactListResponse {
+  ContactList contacts = 1;
+  DefaultResponse error = 2;
+}
+
+service UserService {
+  rpc listUsers (FilterRequest) returns (UserListResponse);
+  rpc findUser (UserIdFilterRequest) returns (FindUserResponse);
+  rpc findUserByEmail (UserEmailFilterRequest) returns (FindUserResponse);
+  rpc create (UserCreationRequest) returns (DefaultResponse);
+  rpc edit (UserEditRequest) returns (DefaultResponse);
+  rpc delete (DeleteRequest) returns (DefaultResponse);
+}
+
+service AddressService {
+  rpc listAddressesFromUser (UserIdFilterRequest) returns (AddressListResponse);
+  rpc findAddress (AddressFilterRequest) returns (FindAddressResponse);
+  rpc create (AddressCreationRequest) returns (DefaultResponse);
+  rpc edit (AddressEditRequest) returns (DefaultResponse);
+  rpc delete (DeleteRequest) returns (DefaultResponse);
+}
+
+service ContactService {
+  rpc listContactsFromUser (UserIdFilterRequest) returns (ContactListResponse);
+  rpc findContact (ContactFilterRequest) returns (FindContactResponse);
+  rpc create (ContactCreationRequest) returns (DefaultResponse);
+  rpc edit (ContactEditRequest) returns (DefaultResponse);
+  rpc delete (DeleteRequest) returns (DefaultResponse);
+}
